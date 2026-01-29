@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>皿打 - Sara-Da Typing Game</title>
+    <meta name="description" content="小悪魔から食べ物を守れ！タイピングで撃退するアクションゲーム">
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&family=Orbitron:wght@700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="game-container">
+        <!-- メインメニュー -->
+        <div id="main-menu" class="screen active">
+            <div class="menu-content">
+                <h1 class="game-title">
+                    <span class="title-jp">皿打</span>
+                    <span class="title-en">Sara-Da</span>
+                </h1>
+                <p class="subtitle">小悪魔から食べ物を守れ！</p>
+                
+                <div class="difficulty-select">
+                    <h2>難易度選択</h2>
+                    <button class="btn-difficulty" data-difficulty="easy">
+                        <span class="diff-name">EASY</span>
+                        <span class="diff-desc">初心者向け・ゆっくりペース</span>
+                    </button>
+                    <button class="btn-difficulty" data-difficulty="normal">
+                        <span class="diff-name">NORMAL</span>
+                        <span class="diff-desc">標準的な難しさ</span>
+                    </button>
+                    <button class="btn-difficulty" data-difficulty="hard">
+                        <span class="diff-name">HARD</span>
+                        <span class="diff-desc">上級者向け・高速</span>
+                    </button>
+                </div>
+                
+                <div class="instructions">
+                    <h3>遊び方</h3>
+                    <p>小悪魔の吹き出しに表示された単語をタイピング！<br>
+                    全ての食べ物を守り切ろう！</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- ゲーム画面 -->
+        <div id="game-screen" class="screen">
+            <canvas id="game-canvas"></canvas>
+            
+            <!-- UI オーバーレイ -->
+            <div id="game-ui">
+                <div class="ui-top">
+                    <div class="score-display">
+                        <span class="label">SCORE</span>
+                        <span id="score-value">0</span>
+                    </div>
+                    <div class="combo-display" id="combo-display">
+                        <span id="combo-value">0</span>
+                        <span class="label">COMBO</span>
+                    </div>
+                    <div class="lives-display">
+                        <span class="label">FOOD</span>
+                        <div id="lives-icons"></div>
+                    </div>
+                </div>
+                
+                <div class="ui-bottom">
+                    <div class="input-display">
+                        <span id="current-input"></span>
+                        <span class="cursor"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- ゲームオーバー画面 -->
+        <div id="gameover-screen" class="screen">
+            <div class="gameover-content">
+                <h2 class="gameover-title">GAME OVER</h2>
+                <div class="final-stats">
+                    <div class="stat">
+                        <span class="stat-label">最終スコア</span>
+                        <span id="final-score" class="stat-value">0</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-label">最大コンボ</span>
+                        <span id="final-combo" class="stat-value">0</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-label">撃退数</span>
+                        <span id="final-defeats" class="stat-value">0</span>
+                    </div>
+                </div>
+                <button id="btn-retry" class="btn-primary">もう一度プレイ</button>
+                <button id="btn-menu" class="btn-secondary">メニューに戻る</button>
+            </div>
+        </div>
+        
+        <!-- クリア画面 -->
+        <div id="clear-screen" class="screen">
+            <div class="clear-content">
+                <h2 class="clear-title">STAGE CLEAR!</h2>
+                <div class="clear-message">食べ物を守り切った！</div>
+                <div class="final-stats">
+                    <div class="stat">
+                        <span class="stat-label">最終スコア</span>
+                        <span id="clear-score" class="stat-value">0</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-label">残り食べ物ボーナス</span>
+                        <span id="clear-bonus" class="stat-value">+0</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-label">最大コンボ</span>
+                        <span id="clear-combo" class="stat-value">0</span>
+                    </div>
+                </div>
+                <button id="btn-next" class="btn-primary">次のステージ</button>
+                <button id="btn-menu-clear" class="btn-secondary">メニューに戻る</button>
+            </div>
+        </div>
+    </div>
+    
+    <script src="js/words.js"></script>
+    <script src="js/devil.js"></script>
+    <script src="js/game.js"></script>
+</body>
+</html>
