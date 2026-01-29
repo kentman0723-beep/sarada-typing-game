@@ -218,6 +218,7 @@ class Game {
 
         // Current input
         this.currentInput = '';
+        this.currentDisplayWord = ''; // 表示用の日本語
         this.targetDevil = null;
 
         // Images
@@ -229,7 +230,7 @@ class Game {
         // Plate position & size
         this.plateX = 0;
         this.plateY = 0;
-        this.plateSize = 200;
+        this.plateSize = 350; // 皿のサイズを拡大
 
         // Initialize
         this.init();
@@ -348,6 +349,8 @@ class Game {
                 this.sound.playMiss();
                 return;
             }
+            // 日本語表示を設定
+            this.currentDisplayWord = this.targetDevil.word;
         }
 
         const result = this.targetDevil.checkInput(char);
@@ -359,6 +362,7 @@ class Game {
             this.sound.playType();
         } else if (result === 'complete') {
             this.currentInput = '';
+            this.currentDisplayWord = '';
             this.targetDevil = null;
             this.updateInputDisplay();
         } else {
@@ -735,7 +739,8 @@ class Game {
     }
 
     updateInputDisplay() {
-        document.getElementById('current-input').textContent = this.currentInput;
+        // 日本語単語を表示（ターゲットがある場合）
+        document.getElementById('current-input').textContent = this.currentDisplayWord || '';
     }
 
     gameOver() {
